@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12d0a2e2c5954f87bf140a5971a08036" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="ReadWriteDBModel.Book" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDBModel.Complaint" Width="1.5" PointX="7.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDBModel.Genre" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDBModel.ReadingList" Width="1.5" PointX="10.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDBModel.Review" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDBModel.RoleRequest" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDBModel.Role" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDBModel.UnfreezeRequest" Width="1.5" PointX="10.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDBModel.User" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_Books_Author" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_Complaints_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_ReadingLists_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_Reviews_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_UnfreezeRequests_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_Complaints_Review" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_Complaints_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_ReadingLists_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_Reviews_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_RoleRequests_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_RoleRequests_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_UnfreezeRequests_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.FK_UnfreezeRequests_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDBModel.BookGenres" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
