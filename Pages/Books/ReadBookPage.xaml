@@ -1,0 +1,75 @@
+﻿<Page x:Class="УП._01._01.Khachatryan.Pages.Books.ReadBookPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:УП._01._01.Khachatryan.Pages.Books"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="800"
+      Title="Чтение книги">
+
+    <Grid Background="#db7093">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderBrush="#fff000" BorderThickness="2" Margin="20">
+            <DockPanel >
+                <StackPanel DockPanel.Dock="Left">
+
+                    <TextBlock x:Name="BookTitleTB" FontSize="32"/>
+                    <TextBlock x:Name="AuthorTB" />
+                </StackPanel>
+
+                <Button Content="Назад" HorizontalAlignment="Right" DockPanel.Dock="Right" Click="BackBtn_Click"/>
+
+            </DockPanel>
+        </Border>
+ 
+        <Border Grid.Row="1" Margin="20" Padding="20" BorderBrush="#fff000" BorderThickness="2" >
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                <TextBlock x:Name="BookContentTB" 
+                       TextWrapping="Wrap"
+                       LineHeight="32"/>
+
+            </ScrollViewer>
+
+        </Border>
+
+        <UniformGrid Grid.Row="2" Columns="2" HorizontalAlignment="Center" Margin="5,15">
+
+            <Button Content="Прочитано"  Click="MarkAsReadBtn_Click"/>
+
+            <Button Content="Читаю" Click="MarkAsReadingBtn_Click"/>
+
+        </UniformGrid>
+        
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Padding" Value="15,5"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="#fff000"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+        </Grid.Resources>
+    </Grid>
+</Page>
