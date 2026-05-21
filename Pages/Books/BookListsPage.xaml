@@ -1,0 +1,188 @@
+﻿<Page x:Class="УП._01._01.Khachatryan.Pages.Books.BookListsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:УП._01._01.Khachatryan.Pages.Books"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Список книг">
+
+    <Grid Background="#DB7093" Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
+        <Border Grid.Row="0" Background="Transparent" Padding="20" Margin="5" BorderBrush="#fff000" BorderThickness="2">
+
+            <WrapPanel>
+
+                <TextBox x:Name="SearchTB" Width="220" Margin="5" TextChanged="FiltersChanged"/>
+
+                <UniformGrid Columns="2" >
+
+                    <ComboBox x:Name="SortCB" SelectionChanged="FiltersChanged" VerticalAlignment="Center">
+                        <ComboBoxItem Content="Без сортировки"/>
+                        <ComboBoxItem Content="По названию"/>
+                        <ComboBoxItem Content="По рейтингу"/>
+
+                    </ComboBox>
+
+                    <ComboBox x:Name="GenreCB"  DisplayMemberPath="GenreName" SelectionChanged="FiltersChanged"/>
+                </UniformGrid>
+
+            </WrapPanel>
+
+        </Border>
+        <Border Grid.Row="1" Background="Transparent"  Margin="5" BorderBrush="#fff000" BorderThickness="2">
+            <UniformGrid Columns="4" >
+                <Button Content="В планах"  Click="PlansBtn_Click"/>
+                <Button Content="Читаю"  Click="ReadingBtn_Click"/>
+                <Button Content="Прочитано"  Click="FinishedBtn_Click"/>
+                <Button Content="Заброшено" Click="DroppedBtn_Click"/>
+            </UniformGrid>
+        </Border>
+
+
+        <ListView x:Name="BooksLV" Grid.Row="2" Background="Transparent" BorderThickness="0" d:ItemsSource="{d:SampleData ItemCount=5}">
+
+            <ListView.ItemsPanel>
+
+                <ItemsPanelTemplate>
+
+                    <WrapPanel/>
+
+                </ItemsPanelTemplate>
+
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Border Background="Transparent" Padding="20" Margin="5" BorderBrush="#fff000" BorderThickness="2">
+
+                        <StackPanel>
+
+
+                            <Border Height="250"
+                                    CornerRadius="15"
+                                    ClipToBounds="True">
+
+                                <Image Source="{Binding Book.CoverPath}"
+                                       Stretch="Fill"/>
+
+                            </Border>
+
+
+                            <TextBlock Text="{Binding Book.Title}" />
+
+
+                            <TextBlock Text="{Binding Book.User.DisplayName}" FontSize="20" />
+
+
+                            <TextBlock Text="{Binding Status}" FontSize="18" />
+
+
+                            <Button Content="Открыть"  Tag="{Binding Book}" HorizontalAlignment="Center" Click="OpenBookBtn_Click"/>
+
+                            <ComboBox SelectedValue="{Binding Status}" Tag="{Binding}" SelectionChanged="StatusCB_SelectionChanged">
+
+                                <ComboBoxItem Content="В планах"/>
+                                <ComboBoxItem Content="Читаю"/>
+                                <ComboBoxItem Content="Прочитано"/>
+                                <ComboBoxItem Content="Заброшено"/>
+
+                            </ComboBox>
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontSize" Value="26"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Margin" Value="5"/>
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                    <Setter Property="TextAlignment" Value="Center"/>
+                                </Style>
+
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#fff000"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="FontSize" Value="18"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                                    <Setter Property="Margin" Value="5"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                                    <Setter Property="FontSize" Value="18"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Margin" Value="5"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+
+        </ListView>
+        
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="TextAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="#fff000"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="5,0"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="#fff000"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+
+            <Style TargetType="ComboBox">
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+            
+        </Grid.Resources>
+    </Grid>
+</Page>
