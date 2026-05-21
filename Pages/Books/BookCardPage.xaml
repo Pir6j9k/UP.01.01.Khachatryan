@@ -1,0 +1,184 @@
+﻿<Page x:Class="УП._01._01.Khachatryan.Pages.Books.BookCardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:УП._01._01.Khachatryan.Pages.Books"
+      mc:Ignorable="d" 
+      Title="BookCardPage">
+
+    <Grid Background="#db7093">
+
+        <ScrollViewer>
+
+            <StackPanel Margin="20">
+
+                <Grid Margin="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Обложка -->
+
+                    <Border Width="250" Height="350" BorderThickness="2" BorderBrush="#fff000" Background="Transparent">
+
+                        <Image x:Name="CoverImage" Stretch="UniformToFill"/>
+                    </Border>
+
+
+                    <StackPanel Grid.Column="1">
+
+                        <TextBlock x:Name="TitleTB" FontSize="32" TextWrapping="Wrap"/>
+
+                        <TextBlock x:Name="AuthorTB" FontSize="20"/>
+
+                        <WrapPanel x:Name="GenresWP" />
+
+                        <TextBlock Text="Описание"/>
+
+                        <TextBlock x:Name="DescriptionTB" FontSize="20" TextWrapping="Wrap"/>
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <Button Content="Читать" Click="ReadBtn_Click"/>
+
+                            <Button Content="Жалоба на книгу" Click="ReportBookBtn_Click"/>
+
+                            <Button Content="Жалоба на автора" Click="ReportAuthorBtn_Click"/>
+
+                        </StackPanel>
+
+
+                        <StackPanel x:Name="AdminPanel" Orientation="Horizontal" Visibility="Collapsed">
+
+                            <Button Content="Заморозить книгу"  Click="FreezeBookBtn_Click"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Border BorderBrush="#fff000" BorderThickness="2" Padding="20" Margin="10">
+
+                    <StackPanel>
+
+                        <TextBlock Text="Оставить отзыв" FontSize="32"/>
+
+                        <TextBlock Text="Оценка" />
+
+                        <StackPanel x:Name="StarsPanel" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5">
+
+                            <Button Content="☆" Tag="1" Click="Star_Click"/>
+                            <Button Content="☆" Tag="2" Click="Star_Click"/>
+                            <Button Content="☆" Tag="3" Click="Star_Click"/>
+                            <Button Content="☆" Tag="4" Click="Star_Click"/>
+                            <Button Content="☆" Tag="5" Click="Star_Click"/>
+                            <Button Content="☆" Tag="6" Click="Star_Click"/>
+                            <Button Content="☆" Tag="7" Click="Star_Click"/>
+                            <Button Content="☆" Tag="8" Click="Star_Click"/>
+                            <Button Content="☆" Tag="9" Click="Star_Click"/>
+                            <Button Content="☆" Tag="10" Click="Star_Click"/>
+                            <StackPanel.Resources>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="FontSize" Value="32"/>
+                                    <Setter Property="Foreground" Value="#fff000"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                                    <Setter Property="Margin" Value="5"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                        <TextBlock Text="Текст отзыва" />
+
+                        <TextBox x:Name="ReviewTB" Height="100" TextWrapping="Wrap" AcceptsReturn="True" />
+
+                        <Button Content="Отправить отзыв" Margin="5,15" Click="SendReviewBtn_Click"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <TextBlock Text="Отзывы" FontSize="32"/>
+
+                <ItemsControl x:Name="ReviewsIC">
+
+                    <ItemsControl.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <Border BorderBrush="#fff000" BorderThickness="2" Padding="20" Margin="10">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="{Binding User.DisplayName}" />
+
+                                    <TextBlock Text="{Binding Rating, StringFormat=Оценка: {0}/10}" FontSize="18" />
+
+                                    <TextBlock Text="{Binding ReviewText}" TextWrapping="Wrap" FontSize="20"/>
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Button Content="Пожаловаться"  Click="ReportReviewBtn_Click" Tag="{Binding}"/>
+                                        <Button Content="Заморозить отзыв" Visibility="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.IsAdminVisibility}" Click="FreezeReviewBtn_Click" Tag="{Binding}"/>
+
+                                    </StackPanel>
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="FontSize" Value="26"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                            <Setter Property="Margin" Value="5"/>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                </StackPanel>
+
+                            </Border>
+
+                        </DataTemplate>
+
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+
+            </StackPanel>
+
+        </ScrollViewer>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="#fff000"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="5,0"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="#fff000"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+    </Grid>
+</Page>
