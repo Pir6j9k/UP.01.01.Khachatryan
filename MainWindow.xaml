@@ -5,8 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:УП._01._01.Khachatryan"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Читай, Пиши и не спиши" Height="450" Width="800">
+
+    <Grid Background="#db7093">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="#fff000">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" VerticalAlignment="Top">
+
+                <Button Tag="Catalog"  BorderThickness="0" Content="🕮" ToolTip="Каталог книг" Click="Navigating" />
+                <Button Tag="BooksList" Content="📚" ToolTip="Список книг" Click="Navigating" />
+                <Button x:Name="BtnAdmin" Tag="Admin" Content="✍" ToolTip="Страница администратор" Click="Navigating" Visibility="Collapsed" />
+                <Button x:Name="BtnAuthor" Tag="Author" Content="✒" ToolTip="Страница автора" Click="Navigating" Visibility="Collapsed"/>
+                <Button x:Name="BtnFrozen" Tag="Frozen" Content="🔏" ToolTip="Заморозка аккаунта" Click="Navigating" Visibility="Collapsed" />
+                <Button x:Name="BtnProfile" VerticalAlignment="Bottom"  Background="#fff000" BorderThickness="0" Content="👤" ToolTip="Профиль" FontFamily="{StaticResource MS}" FontSize="20" FontWeight="Bold" Margin="5,10" Click="BtnProfile_Click"/>
+
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#fff000"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="FontFamily" Value="{StaticResource MS}"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Margin" Value="5, 10"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
+                </StackPanel.Resources>
+            </StackPanel>
+
+            <Button x:Name="BtnLogin" VerticalAlignment="Bottom" Grid.Row="1" Background="#fff000" BorderThickness="0" Content="➪" ToolTip="Профиль" FontFamily="{StaticResource MS}" FontSize="28" FontWeight="Bold" Margin="5,10" Click="BtnLogin_Click"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Background="#db7093">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Button x:Name="BtnBack" Content="☚" Background="Transparent" BorderThickness="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="28" Foreground="#fff000"  Click="GoBack_Click" />
+                <TextBlock x:Name="TxtPageTitle" Text="Главная страница" Margin="5" HorizontalAlignment="Center" FontFamily="{StaticResource MS}" FontWeight="Bold"  FontSize="28" TextAlignment="Center"  VerticalAlignment="Center"/>
+            </Grid>
+            <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" BorderBrush="#fff000" BorderThickness="1" />
+        </Grid>
     </Grid>
 </Window>
