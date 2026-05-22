@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:УП._01._01.Khachatryan.Pages.Profile"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AppealPage">
+      Title="Оспорить заморозку аккаунта">
 
     <Grid Background="#db7093">
 

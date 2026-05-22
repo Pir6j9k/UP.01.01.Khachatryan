@@ -113,17 +113,16 @@ namespace УП._01._01.Khachatryan.Pages.Author
         }
 
 
-        private void BooksGrid_MouseDoubleClick(object sender,
-            MouseButtonEventArgs e)
+        private void BooksGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Book selectedBook =
-                BooksGrid.SelectedItem as Book;
-
+            Book selectedBook = BooksGrid.SelectedItem as Book;
             if (selectedBook == null)
                 return;
 
-            Core.MainFrame.Navigate(
-                new BookCardPage(selectedBook));
+            if (selectedBook.IsFrozen)
+                Core.MainFrame.Navigate(new AppealBookPage(selectedBook));
+            else
+                Core.MainFrame.Navigate(new BookCardPage(selectedBook));
         }
     }
 }

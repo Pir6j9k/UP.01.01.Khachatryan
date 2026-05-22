@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:УП._01._01.Khachatryan.Pages.Author"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AppealBookPage">
+      Title="Оспорить заморозку книги">
 
     <Grid Background="#db7093" Margin="15">
 
