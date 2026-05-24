@@ -35,11 +35,10 @@ namespace УП._01._01.Khachatryan.Pages.Books
         {
             List<Genre> genres = Core.DB.Genres.ToList();
 
-            genres.Insert(0,
-                new Genre()
-                {
-                    GenreName = "Все жанры"
-                });
+            genres.Insert(0, new Genre()
+            {
+                GenreName = "Все жанры"
+            });
 
             GenreCB.ItemsSource = genres;
 
@@ -50,51 +49,27 @@ namespace УП._01._01.Khachatryan.Pages.Books
  
         private void LoadBooks()
         {
-            books = Core.DB.Books
-                .Where(x => !x.IsFrozen)
-                .ToList();
+            books = Core.DB.Books.Where(x => !x.IsFrozen).ToList();
 
-            string search =
-                SearchTB.Text.ToLower();
+            string search = SearchTB.Text.ToLower();
 
-            books = books.Where(x => x.Title.ToLower().Contains(search) ||
-                x.User.DisplayName
-                .ToLower()
-                .Contains(search))
-                .ToList();
+            books = books.Where(x => x.Title.ToLower().Contains(search) || x.User.DisplayName.ToLower().Contains(search)).ToList();
 
             Genre selectedGenre = GenreCB.SelectedItem as Genre;
 
             if (selectedGenre != null && selectedGenre.GenreName != "Все жанры")
             {
-                books = books.Where(x =>
-                    x.Genres.Any(g =>
-                        g.GenreID ==
-                        selectedGenre.GenreID))
-                    .ToList();
+                books = books.Where(x => x.Genres.Any(g => g.GenreID == selectedGenre.GenreID)).ToList();
             }
 
             switch (SortCB.SelectedIndex)
             {
                 case 1:
-
-                    books = books
-                        .OrderBy(x => x.Title)
-                        .ToList();
-
+                    books = books.OrderBy(x => x.Title).ToList();
                     break;
 
                 case 2:
-
-                    books = books
-                        .OrderByDescending(x =>
-                            x.Reviews.Any()
-                            ?
-                            x.Reviews.Average(r =>
-                                r.Rating)
-                            : 0)
-                        .ToList();
-
+                    books = books.OrderByDescending(x => x.Reviews.Any() ? x.Reviews.Average(r => r.Rating) : 0).ToList();
                     break;
             }
 
@@ -116,8 +91,7 @@ namespace УП._01._01.Khachatryan.Pages.Books
             if (selectedBook == null)
                 return;
 
-            Core.MainFrame.Navigate(
-                new BookCardPage(selectedBook));
+            Core.MainFrame.Navigate(new BookCardPage(selectedBook));
         }
 
         private void AddToPlanBtn_Click(object sender, RoutedEventArgs e)
@@ -133,36 +107,27 @@ namespace УП._01._01.Khachatryan.Pages.Books
             if (selectedBook == null)
                 return;
 
-            bool exists =
-                Core.DB.ReadingLists.Any(x =>
-                    x.BookID ==
-                    selectedBook.BookID
-                    &&
-                    x.UserID ==
-                    Core.CurrentUser.UserID);
+            bool exists = Core.DB.ReadingLists.Any(x => x.BookID == selectedBook.BookID && x.UserID == Core.CurrentUser.UserID);
 
             if (exists)
             {
                 MessageBox.Show( "Книга уже есть в списках");
-
                 return;
             }
 
             ReadingList readingList = new ReadingList()
-                {
+            {
                 UserID = Core.CurrentUser.UserID,
                 BookID = selectedBook.BookID,
                 Status = "В планах",
                 AddedAt = DateTime.Now
             };
 
-            Core.DB.ReadingLists.Add(
-                readingList);
+            Core.DB.ReadingLists.Add(readingList);
 
             Core.DB.SaveChanges();
 
             MessageBox.Show( "Книга добавлена");
         }
-
     }
 }

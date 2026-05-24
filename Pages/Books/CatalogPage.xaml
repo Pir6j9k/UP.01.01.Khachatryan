@@ -16,16 +16,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-
-
         <Border Background="Transparent" Padding="20" Margin="5" BorderBrush="#fff000" BorderThickness="2" >
-
-            <WrapPanel >
-
-
+            <WrapPanel>
+                
                 <TextBox x:Name="SearchTB" FontFamily="{StaticResource MS}" Background="#fff000" BorderThickness="0" Width="220" Foreground="Black" Height="35" Margin="5" FontSize="18" VerticalContentAlignment="Center" TextChanged="FiltersChanged"/>
 
-                <UniformGrid Columns="2" >
+                <UniformGrid Columns="2">
 
                     <ComboBox x:Name="SortCB"  SelectionChanged="FiltersChanged" VerticalAlignment="Center">
 
@@ -67,30 +63,21 @@
                     <Border Margin="10" Padding="10" BorderBrush="#fff000" BorderThickness="2" Background="Transparent">
 
                         <StackPanel>
-
-
                             <Border Height="250"  ClipToBounds="True">
-
                                 <Image Source="{Binding CoverPath}" Stretch="Fill"/>
-
                             </Border>
 
-
                             <TextBlock Text="{Binding Title}" FontSize="28"/>
-
 
                             <TextBlock Text="{Binding User.DisplayName}" FontSize="18" TextAlignment="Center"/>
 
                             <TextBlock Text="{Binding Reviews.Count, StringFormat=Отзывы: {0}}" />
 
                             <StackPanel>
-
                                 <Button Content="Открыть" Tag="{Binding}" Click="OpenBookBtn_Click" FontFamily="{StaticResource MS}" FontSize="18" FontWeight="Bold" Background="#fff000" BorderThickness="0" Margin="5" Padding="5"/>
-
                                 <Button Content="В планах" Tag="{Binding}" Click="AddToPlanBtn_Click" FontFamily="{StaticResource MS}" FontSize="18" FontWeight="Bold" Background="#fff000" BorderThickness="0" Margin="5" Padding="5"/>
-
-
                             </StackPanel>
+
                             <StackPanel.Resources>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -102,17 +89,13 @@
                                     <Setter Property="TextWrapping" Value="Wrap"/>
                                     <Setter Property="TextAlignment" Value="Center"/>
                                 </Style>
-                                
                             </StackPanel.Resources>
                         </StackPanel>
-
                     </Border>
-
                 </DataTemplate>
-
             </ListView.ItemTemplate>
-
         </ListView>
+        
         <Grid.Resources>
             <Style TargetType="ComboBox">
                 <Setter Property="Foreground" Value="Black"/>
