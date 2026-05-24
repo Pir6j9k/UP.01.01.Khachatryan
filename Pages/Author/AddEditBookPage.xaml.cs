@@ -22,7 +22,6 @@ namespace УП._01._01.Khachatryan.Pages.Author
     {
         private Book currentBook;
 
-        // Добавление
         public AddEditBookPage()
         {
             InitializeComponent();
@@ -30,13 +29,10 @@ namespace УП._01._01.Khachatryan.Pages.Author
             LoadGenres();
         }
 
-        // Редактирование
         public AddEditBookPage(Book selectedBook)
         {
             InitializeComponent();
-            currentBook = Core.DB.Books
-                .Include("Genres")
-                .FirstOrDefault(b => b.BookID == selectedBook.BookID) ?? selectedBook;
+            currentBook = Core.DB.Books.Include("Genres").FirstOrDefault(b => b.BookID == selectedBook.BookID) ?? selectedBook;
 
             TitleTB.Text = "Редактирование книги";
             BookNameTB.Text = currentBook.Title;
@@ -65,8 +61,7 @@ namespace УП._01._01.Khachatryan.Pages.Author
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(BookNameTB.Text) ||
-                string.IsNullOrWhiteSpace(ContentTB.Text))
+            if (string.IsNullOrWhiteSpace(BookNameTB.Text) || string.IsNullOrWhiteSpace(ContentTB.Text))
             {
                 MessageBox.Show("Заполните обязательные поля: Название и Текст книги");
                 return;
