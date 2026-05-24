@@ -22,15 +22,9 @@ namespace УП._01._01.Khachatryan.Pages.Books
     {
         private Book currentBook;
 
-        // Выбранный рейтинг
         private int selectedRating = 10;
 
-        // Видимость админ-кнопок
-        public Visibility IsAdminVisibility =>
-            Core.CurrentUser?.Role?.RoleName ==
-            "Администратор"
-            ? Visibility.Visible
-            : Visibility.Collapsed;
+        public Visibility IsAdminVisibility => Core.CurrentUser?.Role?.RoleName == "Администратор" ? Visibility.Visible : Visibility.Collapsed;
 
         public BookCardPage(Book selectedBook)
         {
@@ -49,40 +43,23 @@ namespace УП._01._01.Khachatryan.Pages.Books
             InitStars();
         }
 
-        // ============================================
-        // ИНИЦИАЛИЗАЦИЯ ЗВЁЗД
-        // ============================================
-
         private void InitStars()
         {
             foreach (Button star in StarsPanel.Children)
             {
-                int number =
-                    Convert.ToInt32(star.Tag);
+                int number = Convert.ToInt32(star.Tag);
 
-                star.Content =
-                    number <= selectedRating
-                    ? "★"
-                    : "☆";
+                star.Content = number <= selectedRating ? "★" : "☆";
             }
         }
-
-        // ============================================
-        // ВЫБОР ОЦЕНКИ
-        // ============================================
-
-        private void Star_Click(object sender,
-            RoutedEventArgs e)
+        private void Star_Click(object sender, RoutedEventArgs e)
         {
-            Button clickedStar =
-                sender as Button;
+            Button clickedStar = sender as Button;
 
             if (clickedStar == null)
                 return;
 
-            selectedRating =
-                Convert.ToInt32(
-                    clickedStar.Tag);
+            selectedRating = Convert.ToInt32( clickedStar.Tag);
 
             int current = 1;
 
@@ -101,41 +78,23 @@ namespace УП._01._01.Khachatryan.Pages.Books
             }
         }
 
-        // ============================================
-        // ЗАГРУЗКА КНИГИ
-        // ============================================
-
         private void LoadBook()
         {
-            TitleTB.Text =
-                currentBook.Title;
+            TitleTB.Text = currentBook.Title;
 
-            DescriptionTB.Text =
-                currentBook.Description;
+            DescriptionTB.Text = currentBook.Description;
 
-            AuthorTB.Text =
-                $"Автор: {currentBook.User?.DisplayName}";
-
-            // Обложка
+            AuthorTB.Text = $"Автор: {currentBook.User?.DisplayName}";
 
             try
             {
-                if (!string.IsNullOrWhiteSpace(
-                    currentBook.CoverPath))
+                if (!string.IsNullOrWhiteSpace(currentBook.CoverPath))
                 {
-                    CoverImage.Source =
-                        new BitmapImage(
-                            new Uri(
-                                currentBook.CoverPath,
-                                UriKind.RelativeOrAbsolute));
+                    CoverImage.Source = new BitmapImage( new Uri( currentBook.CoverPath, UriKind.RelativeOrAbsolute));
                 }
             }
-            catch
-            {
+            catch { }
 
-            }
-
-            // Жанры
 
             GenresWP.Children.Clear();
 
@@ -143,19 +102,10 @@ namespace УП._01._01.Khachatryan.Pages.Books
             {
                 Border border = new Border()
                 {
-                    BorderBrush =
-                        (SolidColorBrush)
-                        new BrushConverter()
-                        .ConvertFromString("#fff000"),
-
-                    BorderThickness =
-                        new Thickness(1),
-
-                    Margin =
-                        new Thickness(5),
-
-                    Padding =
-                        new Thickness(5)
+                    BorderBrush = (SolidColorBrush) new BrushConverter() .ConvertFromString("#fff000"),
+                    BorderThickness = new Thickness(1),
+                    Margin = new Thickness(5),
+                    Padding = new Thickness(5)
                 };
 
                 border.Child = new TextBlock()
@@ -168,81 +118,41 @@ namespace УП._01._01.Khachatryan.Pages.Books
             }
         }
 
-        // ============================================
-        // ЗАГРУЗКА ОТЗЫВОВ
-        // ============================================
-
         private void LoadReviews()
         {
-            ReviewsIC.ItemsSource =
-                Core.DB.Reviews
-                .Where(x =>
-                    x.BookID ==
-                    currentBook.BookID)
-                .OrderByDescending(x =>
-                    x.CreatedAt)
-                .ToList();
+            ReviewsIC.ItemsSource = Core.DB.Reviews.Where(x => x.BookID == currentBook.BookID).OrderByDescending(x => x.CreatedAt).ToList();
         }
-
-        // ============================================
-        // ПРОВЕРКА АДМИНА
-        // ============================================
 
         private void CheckAdmin()
         {
-            if (Core.CurrentUser?.Role?.RoleName ==
-                "Администратор")
+            if (Core.CurrentUser?.Role?.RoleName == "Администратор")
             {
-                AdminPanel.Visibility =
-                    Visibility.Visible;
+                AdminPanel.Visibility = Visibility.Visible;
             }
         }
 
-        // ============================================
-        // ЧТЕНИЕ КНИГИ
-        // ============================================
-
-        private void ReadBtn_Click(object sender,
-            RoutedEventArgs e)
+        private void ReadBtn_Click(object sender, RoutedEventArgs e)
         {
-            Core.MainFrame.Navigate(
-                new ReadBookPage(currentBook));
+            Core.MainFrame.Navigate(new ReadBookPage(currentBook));
         }
 
-        // ============================================
-        // ДОБАВЛЕНИЕ ОТЗЫВА
-        // ============================================
-
-        private void SendReviewBtn_Click(
-            object sender,
-            RoutedEventArgs e)
+        private void SendReviewBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (Core.CurrentUser == null)
                 {
-                    MessageBox.Show(
-                        "Необходимо авторизоваться");
-
+                    MessageBox.Show("Необходимо авторизоваться");
                     return;
                 }
 
                 Review review = new Review()
                 {
-                    BookID =
-                        currentBook.BookID,
-
-                    UserID =
-                        Core.CurrentUser.UserID,
-
-                    Rating =
-                        selectedRating,
-
-                    ReviewText =
-                        ReviewTB.Text.Trim(),
-
-                    CreatedAt =
-                        DateTime.Now
+                    BookID = currentBook.BookID,
+                    UserID = Core.CurrentUser.UserID,
+                    Rating = selectedRating,
+                    ReviewText = ReviewTB.Text.Trim(),
+                    CreatedAt = DateTime.Now
                 };
 
                 Core.DB.Reviews.Add(review);
@@ -257,19 +167,13 @@ namespace УП._01._01.Khachatryan.Pages.Books
 
                 LoadReviews();
 
-                MessageBox.Show(
-                    "Отзыв успешно добавлен");
+                MessageBox.Show("Отзыв успешно добавлен");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
-
-        // ============================================
-        // ЖАЛОБА НА КНИГУ
-        // ============================================
 
         private void ReportBookBtn_Click( object sender, RoutedEventArgs e)
         {
@@ -278,20 +182,19 @@ namespace УП._01._01.Khachatryan.Pages.Books
                 if (Core.CurrentUser == null)
                 {
                     MessageBox.Show( "Необходимо авторизоваться");
-
                     return;
                 }
 
                 Complaint complaint = new Complaint()
-                    {
-                        UserID = Core.CurrentUser.UserID,
+                {
+                    UserID = Core.CurrentUser.UserID,
 
-                        BookID = currentBook.BookID,
+                    BookID = currentBook.BookID,
 
-                        Reason = "Жалоба на книгу",
+                    Reason = "Жалоба на книгу",
 
-                        CreatedAt = DateTime.Now
-                    };
+                    CreatedAt = DateTime.Now
+                };
 
                 Core.DB.Complaints.Add( complaint);
 
@@ -305,118 +208,78 @@ namespace УП._01._01.Khachatryan.Pages.Books
             }
         }
 
-        // ============================================
-        // ЖАЛОБА НА АВТОРА
-        // ============================================
-
-        private void ReportAuthorBtn_Click(
-            object sender,
-            RoutedEventArgs e)
+        private void ReportAuthorBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (Core.CurrentUser == null)
                 {
-                    MessageBox.Show(
-                        "Необходимо авторизоваться");
-
+                    MessageBox.Show("Необходимо авторизоваться");
                     return;
                 }
 
-                Complaint complaint =
-                    new Complaint()
-                    {
-                        UserID =
-                            Core.CurrentUser.UserID,
+                Complaint complaint = new Complaint()
+                {
+                    UserID = Core.CurrentUser.UserID,
 
-                        BookID =
-                            currentBook.BookID,
+                    BookID = currentBook.BookID,
 
-                        Reason =
-                            "Жалоба на автора",
+                    Reason = "Жалоба на автора",
 
-                        CreatedAt =
-                            DateTime.Now
-                    };
+                    CreatedAt = DateTime.Now
+                };
 
-                Core.DB.Complaints.Add(
-                    complaint);
+                Core.DB.Complaints.Add(complaint);
 
                 Core.DB.SaveChanges();
 
-                MessageBox.Show(
-                    "Жалоба отправлена");
+                MessageBox.Show("Жалоба отправлена");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
-        // ============================================
-        // ЖАЛОБА НА ОТЗЫВ
-        // ============================================
-
-        private void ReportReviewBtn_Click(
-            object sender,
-            RoutedEventArgs e)
+        private void ReportReviewBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (Core.CurrentUser == null)
                 {
-                    MessageBox.Show(
-                        "Необходимо авторизоваться");
-
+                    MessageBox.Show("Необходимо авторизоваться");
                     return;
                 }
 
-                Review review =
-                    (sender as Button)?.Tag
-                    as Review;
+                Review review = (sender as Button)?.Tag as Review;
 
                 if (review == null)
                     return;
 
-                Complaint complaint =
-                    new Complaint()
-                    {
-                        UserID =
-                            Core.CurrentUser.UserID,
+                Complaint complaint = new Complaint()
+                {
+                    UserID = Core.CurrentUser.UserID,
 
-                        ReviewID =
-                            review.ReviewID,
+                    ReviewID = review.ReviewID,
 
-                        Reason =
-                            "Жалоба на отзыв",
+                    Reason =  "Жалоба на отзыв",
 
-                        CreatedAt =
-                            DateTime.Now
-                    };
+                    CreatedAt = DateTime.Now
+                };
 
-                Core.DB.Complaints.Add(
-                    complaint);
+                Core.DB.Complaints.Add(complaint);
 
                 Core.DB.SaveChanges();
 
-                MessageBox.Show(
-                    "Жалоба отправлена");
+                MessageBox.Show( "Жалоба отправлена");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
-        // ============================================
-        // ЗАМОРОЗКА КНИГИ
-        // ============================================
-
-        private void FreezeBookBtn_Click(
-            object sender,
-            RoutedEventArgs e)
+        private void FreezeBookBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -424,29 +287,19 @@ namespace УП._01._01.Khachatryan.Pages.Books
 
                 Core.DB.SaveChanges();
 
-                MessageBox.Show(
-                    "Книга заморожена");
+                MessageBox.Show("Книга заморожена");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
-        // ============================================
-        // УДАЛЕНИЕ ОТЗЫВА
-        // ============================================
-
-        private void FreezeReviewBtn_Click(
-            object sender,
-            RoutedEventArgs e)
+        private void FreezeReviewBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Review review =
-                    (sender as Button)?.Tag
-                    as Review;
+                Review review = (sender as Button)?.Tag as Review;
 
                 if (review == null)
                     return;
@@ -457,13 +310,11 @@ namespace УП._01._01.Khachatryan.Pages.Books
 
                 LoadReviews();
 
-                MessageBox.Show(
-                    "Отзыв удалён");
+                MessageBox.Show( "Отзыв удалён");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    ex.Message);
+                MessageBox.Show( ex.Message);
             }
         }
     }

@@ -19,8 +19,6 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Обложка -->
-
                     <Border Width="250" Height="350" BorderThickness="2" BorderBrush="#fff000" Background="Transparent">
 
                         <Image x:Name="CoverImage" Stretch="UniformToFill"/>
