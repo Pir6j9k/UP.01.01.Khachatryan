@@ -31,10 +31,6 @@ namespace УП._01._01.Khachatryan.Pages.Books
             LoadBook();
         }
 
-        // =========================
-        // ЗАГРУЗКА КНИГИ
-        // =========================
-
         private void LoadBook()
         {
             BookTitleTB.Text = currentBook.Title;
@@ -43,32 +39,19 @@ namespace УП._01._01.Khachatryan.Pages.Books
 
             if (currentBook.User != null)
             {
-                AuthorTB.Text =
-                    $"Автор: {currentBook.User.DisplayName}";
+                AuthorTB.Text = $"Автор: {currentBook.User.DisplayName}";
             }
         }
-
-        // =========================
-        // СТАТУС: ПРОЧИТАНО
-        // =========================
 
         private void MarkAsReadBtn_Click(object sender, RoutedEventArgs e)
         {
             UpdateStatus("Прочитано");
         }
 
-        // =========================
-        // СТАТУС: ЧИТАЮ
-        // =========================
-
         private void MarkAsReadingBtn_Click(object sender, RoutedEventArgs e)
         {
             UpdateStatus("Читаю");
         }
-
-        // =========================
-        // ОБНОВЛЕНИЕ СТАТУСА
-        // =========================
 
         private void UpdateStatus(string status)
         {
@@ -78,10 +61,7 @@ namespace УП._01._01.Khachatryan.Pages.Books
                 return;
             }
 
-            ReadingList readingBook =
-                Core.DB.ReadingLists.FirstOrDefault(x =>
-                    x.UserID == Core.CurrentUser.UserID &&
-                    x.BookID == currentBook.BookID);
+            ReadingList readingBook = Core.DB.ReadingLists.FirstOrDefault(x => x.UserID == Core.CurrentUser.UserID && x.BookID == currentBook.BookID);
 
             if (readingBook == null)
             {
@@ -104,10 +84,6 @@ namespace УП._01._01.Khachatryan.Pages.Books
 
             MessageBox.Show($"Статус изменён: {status}");
         }
-
-        // =========================
-        // НАЗАД
-        // =========================
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
