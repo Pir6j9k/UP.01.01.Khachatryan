@@ -31,8 +31,7 @@ namespace УП._01._01.Khachatryan.Pages.Admin
             UserTB.Text = currentUser.DisplayName;
         }
 
-        private void SaveBtn_Click(object sender,
-            RoutedEventArgs e)
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             string password = PasswordPB.Password.Trim();
 
@@ -46,7 +45,7 @@ namespace УП._01._01.Khachatryan.Pages.Admin
 
             if (password.Length < 6)
             {
-                MessageBox.Show( "Пароль должен быть минимум 6 символов");
+                MessageBox.Show("Пароль должен быть минимум 6 символов");
                 return;
             }
 
