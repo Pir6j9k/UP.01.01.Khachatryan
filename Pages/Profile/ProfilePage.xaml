@@ -9,13 +9,9 @@
       Title="Профиль">
 
     <Grid Background="#db7093">
-
         <ScrollViewer VerticalScrollBarVisibility="Hidden">
-
             <StackPanel Margin="30">
-
                 <Border Padding="30" BorderBrush="#fff000" BorderThickness="2"  Background="Transparent">
-
                     <StackPanel>
 
                         <TextBlock x:Name="NameTB" />
@@ -25,15 +21,10 @@
                         <TextBlock x:Name="EmailTB" />
 
                         <TextBlock x:Name="RoleTB" />
-
                     </StackPanel>
-
                 </Border>
 
-                <!-- Заморозка -->
-
                 <Border x:Name="FrozenBorder" Padding="30" BorderBrush="#fff000" BorderThickness="2"  Background="Transparent" Visibility="Collapsed">
-
                     <StackPanel>
 
                         <TextBlock Text="Ваш аккаунт заморожен" FontSize="32"/>
@@ -43,12 +34,9 @@
                         <Button Content="Оспорить заморозку"  Click="AppealBtn_Click"/>
 
                     </StackPanel>
-
                 </Border>
 
-
                 <Border Padding="30" BorderBrush="#fff000" BorderThickness="2"  Background="Transparent">
-
                     <StackPanel>
 
                         <TextBlock Text="Стать автором" FontSize="32"/>
@@ -58,16 +46,12 @@
                         <Button Content="Подать заявку" Click="RequestAuthorBtn_Click"/>
 
                     </StackPanel>
-
                 </Border>
-
 
                 <TextBlock Text="Мои отзывы" FontSize="32"/>
 
                 <ItemsControl x:Name="ReviewsIC">
-
                     <ItemsControl.ItemTemplate>
-
                         <DataTemplate>
 
                             <Border Padding="30" BorderBrush="#fff000" BorderThickness="2"  Background="Transparent">
@@ -93,15 +77,10 @@
                                         </Style>
                                     </StackPanel.Resources>
                                 </StackPanel>
-
                             </Border>
-
                         </DataTemplate>
-
                     </ItemsControl.ItemTemplate>
-
                 </ItemsControl>
-
             </StackPanel>
         </ScrollViewer>
         
