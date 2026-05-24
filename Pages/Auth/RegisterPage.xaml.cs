@@ -29,20 +29,14 @@ namespace УП._01._01.Khachatryan.Pages.Auth
         {
             try
             {
-
                 string name = NameTB.Text.Trim();
                 string login = LoginTB.Text.Trim();
                 string email = EmailTB.Text.Trim();
                 string password = PasswordPB.Password.Trim();
 
-
-                if (string.IsNullOrWhiteSpace(name) ||
-                    string.IsNullOrWhiteSpace(login) ||
-                    string.IsNullOrWhiteSpace(email) ||
-                    string.IsNullOrWhiteSpace(password))
+                if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
                 {
                     MessageBox.Show("Заполните все поля","Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
                     return;
                 }
 
@@ -51,39 +45,25 @@ namespace УП._01._01.Khachatryan.Pages.Auth
 
                 if (loginExists)
                 {
-                    MessageBox.Show(
-                        "Логин уже занят");
-
+                    MessageBox.Show("Логин уже занят");
                     return;
                 }
 
-                // Проверка email
-
-                bool emailExists =
-                    Core.DB.Users.Any(x =>
-                        x.Email == email);
+                bool emailExists = Core.DB.Users.Any(x => x.Email == email);
 
                 if (emailExists)
                 {
-                    MessageBox.Show(
-                        "Email уже используется");
-
+                    MessageBox.Show( "Email уже используется");
                     return;
                 }
-
-                // Роль пользователя
 
                 Role userRole = Core.DB.Roles.FirstOrDefault(x => x.RoleName == "Читатель");
 
                 if (userRole == null)
                 {
-                    MessageBox.Show(
-                        "Роль 'Пользователь' не найдена");
-
+                    MessageBox.Show("Роль 'Пользователь' не найдена");
                     return;
                 }
-
-                // Создание пользователя
 
                 User newUser = new User()
                 {
@@ -116,8 +96,6 @@ namespace УП._01._01.Khachatryan.Pages.Auth
                 MessageBox.Show(ex.Message);
             }
         }
-
-       
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
