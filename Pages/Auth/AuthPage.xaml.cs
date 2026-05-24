@@ -30,13 +30,10 @@ namespace УП._01._01.Khachatryan.Pages.Auth
         {
             try
             {
-
-
                 string login = LoginTB.Text.Trim();
                 string password = PasswordPB.Password.Trim();
 
-                if (string.IsNullOrWhiteSpace(login) ||
-                    string.IsNullOrWhiteSpace(password))
+                if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
                 {
                     MessageBox.Show("Заполните все поля");
                     return;
