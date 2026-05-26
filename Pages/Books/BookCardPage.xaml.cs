@@ -86,6 +86,17 @@ namespace УП._01._01.Khachatryan.Pages.Books
 
             AuthorTB.Text = $"Автор: {currentBook.User?.DisplayName}";
 
+            var reviews = Core.DB.Reviews.Where(x => x.BookID == currentBook.BookID).ToList();
+            if (reviews.Any())
+            {
+                double avgRating = reviews.Average(x => x.Rating);
+                RatingTB.Text = $"Рейтинг: {avgRating:F1}/10";
+            }
+            else
+            {
+                RatingTB.Text = "Рейтинг: нет оценок";
+            }
+
             try
             {
                 if (!string.IsNullOrWhiteSpace(currentBook.CoverPath))
@@ -133,6 +144,7 @@ namespace УП._01._01.Khachatryan.Pages.Books
 
         private void ReadBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (Core.CheckFrozen()) return;
             Core.MainFrame.Navigate(new ReadBookPage(currentBook));
         }
 
@@ -145,6 +157,8 @@ namespace УП._01._01.Khachatryan.Pages.Books
                     MessageBox.Show("Необходимо авторизоваться");
                     return;
                 }
+
+                if (Core.CheckFrozen()) return;
 
                 Review review = new Review()
                 {
@@ -185,6 +199,8 @@ namespace УП._01._01.Khachatryan.Pages.Books
                     return;
                 }
 
+                if (Core.CheckFrozen()) return;
+
                 Complaint complaint = new Complaint()
                 {
                     UserID = Core.CurrentUser.UserID,
@@ -218,6 +234,8 @@ namespace УП._01._01.Khachatryan.Pages.Books
                     return;
                 }
 
+                if (Core.CheckFrozen()) return;
+
                 Complaint complaint = new Complaint()
                 {
                     UserID = Core.CurrentUser.UserID,
@@ -250,6 +268,8 @@ namespace УП._01._01.Khachatryan.Pages.Books
                     MessageBox.Show("Необходимо авторизоваться");
                     return;
                 }
+
+                if (Core.CheckFrozen()) return;
 
                 Review review = (sender as Button)?.Tag as Review;
 

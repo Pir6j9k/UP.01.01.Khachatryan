@@ -19,9 +19,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border Width="250" Height="350" BorderThickness="2" BorderBrush="#fff000" Background="Transparent">
-
-                        <Image x:Name="CoverImage" Stretch="UniformToFill"/>
+                    <Border Width="250" Height="350" BorderThickness="2" BorderBrush="#fff000" Background="Transparent" Padding="10">
+                        <Image x:Name="CoverImage" Stretch="Uniform"/>
                     </Border>
 
 
@@ -29,8 +28,10 @@
 
                         <TextBlock x:Name="TitleTB" FontSize="32" TextWrapping="Wrap"/>
 
-                        <TextBlock x:Name="AuthorTB" FontSize="20"/>
-
+                        <TextBlock x:Name="AuthorTB"/>
+                        
+                        <TextBlock x:Name="RatingTB" FontSize="24"/>
+                        
                         <WrapPanel x:Name="GenresWP" />
 
                         <TextBlock Text="Описание"/>
