@@ -31,9 +31,9 @@ namespace УП._01._01.Khachatryan.Pages.Admin
         {
             ComplaintsDG.ItemsSource = Core.DB.Complaints.ToList();
 
-            UnfreezeDG.ItemsSource = Core.DB.UnfreezeRequests.Include("User").Where(x => x.Status == "На рассмотрении").ToList();
+            UnfreezeDG.ItemsSource = Core.DB.UnfreezeRequests.Include("User1").Where(x => x.Status == "На рассмотрении").ToList();
 
-            RoleRequestsDG.ItemsSource = Core.DB.RoleRequests.Include("User").Where(x => x.Status == "На рассмотрении").ToList();
+            RoleRequestsDG.ItemsSource = Core.DB.RoleRequests.Include("User1").Where(x => x.Status == "На рассмотрении").ToList();
 
             FrozenBooksDG.ItemsSource = Core.DB.Books.Include("User").Where(x => x.IsFrozen).ToList();
 

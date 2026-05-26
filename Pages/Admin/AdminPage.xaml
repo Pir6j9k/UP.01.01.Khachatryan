@@ -70,7 +70,7 @@
 
                             <DataGridTextColumn Header="ID" Binding="{Binding UserID}" Width="60" ElementStyle="{StaticResource CenterText}"/>
 
-                            <DataGridTextColumn Header="Пользователь" Binding="{Binding User.DisplayName}" Width="*" ElementStyle="{StaticResource CenterText}"/>
+                            <DataGridTextColumn Header="Пользователь" Binding="{Binding User1.DisplayName}" Width="*" ElementStyle="{StaticResource CenterText}"/>
 
                             <DataGridTextColumn Header="Причина" Binding="{Binding Reason}" Width="*" ElementStyle="{StaticResource CenterText}"/>
 
@@ -114,7 +114,7 @@
 
                             <DataGridTextColumn Header="ID" Binding="{Binding UserID}" Width="60" ElementStyle="{StaticResource CenterText}"/>
 
-                            <DataGridTextColumn Header="Пользователь" Binding="{Binding User.DisplayName}" Width="*" ElementStyle="{StaticResource CenterText}"/>
+                            <DataGridTextColumn Header="Пользователь" Binding="{Binding User1.DisplayName}" Width="*" ElementStyle="{StaticResource CenterText}"/>
 
                             <DataGridTextColumn Header="Роль" Binding="{Binding RequestedRole}" Width="180" ElementStyle="{StaticResource CenterText}"/>
 
