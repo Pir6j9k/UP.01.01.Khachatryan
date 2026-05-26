@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:УП._01._01.Khachatryan.Pages.Books"
       mc:Ignorable="d" 
-      Title="BookCardPage">
+      Title="Карточка книги">
 
     <Grid Background="#db7093">
 
