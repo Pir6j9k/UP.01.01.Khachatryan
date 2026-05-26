@@ -55,7 +55,7 @@
 
                     <Border Margin="10" Padding="10" BorderBrush="#fff000" BorderThickness="2" Background="Transparent">
 
-                        <StackPanel>
+                        <StackPanel Width="300">
                             
                             <Border Width="250" Height="350" BorderThickness="0"  Background="Transparent" Margin="5" Padding="10">
                                 <Image Source="{Binding CoverPath}" Stretch="Uniform"/>

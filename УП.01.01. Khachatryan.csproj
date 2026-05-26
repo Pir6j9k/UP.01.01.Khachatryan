@@ -263,6 +263,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resourses\Images\summer.jpeg" />
+    <Resource Include="Resourses\Images\startrek.jpg" />
+    <Resource Include="Resourses\Images\heart.jpg" />
+    <Resource Include="Resourses\Images\last.jpg" />
     <Resource Include="Resourses\Images\book.png" />
   </ItemGroup>
   <ItemGroup>

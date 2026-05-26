@@ -92,6 +92,13 @@ namespace УП._01._01.Khachatryan.Pages.Admin
             if (user != null)
                 user.IsFrozen = false;
 
+            if (request.BookID != null)
+            {
+                Book book = Core.DB.Books.FirstOrDefault(x => x.BookID == request.BookID);
+                if (book != null)
+                    book.IsFrozen = false;
+            }
+
             Core.DB.SaveChanges();
 
             LoadData();

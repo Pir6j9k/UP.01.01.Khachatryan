@@ -28,7 +28,8 @@ namespace УП._01._01.Khachatryan.Pages.Books
 
             LoadGenres();
 
-            LoadBooks();
+            LoadBooks(); 
+            this.Loaded += (s, e) => LoadBooks();
         }
 
         private void LoadGenres()
