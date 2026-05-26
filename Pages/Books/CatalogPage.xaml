@@ -37,24 +37,17 @@
 
         </Border>
 
-        <ListView x:Name="BooksLV" Grid.Row="1" Background="Transparent" HorizontalContentAlignment="Stretch"  BorderThickness="0"  d:ItemsSource="{d:SampleData ItemCount=5}">
-            
+        <ListView x:Name="BooksLV" Grid.Row="1" Background="Transparent"  BorderThickness="0"  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}">
+
             <ListView.ItemsPanel>
 
                 <ItemsPanelTemplate>
 
-                    <WrapPanel HorizontalAlignment="Center"/>
+                    <WrapPanel Orientation="Horizontal"/>
 
                 </ItemsPanelTemplate>
 
             </ListView.ItemsPanel>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Width" Value="220"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="Margin" Value="5"/>
-                </Style>
-            </ListView.ItemContainerStyle>
 
             <ListView.ItemTemplate>
 
@@ -63,10 +56,11 @@
                     <Border Margin="10" Padding="10" BorderBrush="#fff000" BorderThickness="2" Background="Transparent">
 
                         <StackPanel>
-                            <Border Height="250"  ClipToBounds="True">
-                                <Image Source="{Binding CoverPath}" Stretch="Fill"/>
+                            
+                            <Border Width="250" Height="350" BorderThickness="0"  Background="Transparent" Margin="5" Padding="10">
+                                <Image Source="{Binding CoverPath}" Stretch="Uniform"/>
                             </Border>
-
+                            
                             <TextBlock Text="{Binding Title}" FontSize="28"/>
 
                             <TextBlock Text="{Binding User.DisplayName}" FontSize="18" TextAlignment="Center"/>

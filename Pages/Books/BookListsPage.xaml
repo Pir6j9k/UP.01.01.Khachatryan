@@ -49,13 +49,13 @@
         </Border>
 
 
-        <ListView x:Name="BooksLV" Grid.Row="2" Background="Transparent" BorderThickness="0" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView x:Name="BooksLV" Grid.Row="2" Background="Transparent" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}">
 
             <ListView.ItemsPanel>
 
                 <ItemsPanelTemplate>
 
-                    <WrapPanel/>
+                    <WrapPanel Orientation="Horizontal"/>
 
                 </ItemsPanelTemplate>
 
@@ -69,14 +69,8 @@
 
                         <StackPanel>
 
-
-                            <Border Height="250"
-                                    CornerRadius="15"
-                                    ClipToBounds="True">
-
-                                <Image Source="{Binding Book.CoverPath}"
-                                       Stretch="Fill"/>
-
+                            <Border Width="250" Height="350" BorderThickness="0" Background="Transparent" Padding="10">
+                                <Image Source="{Binding Book.CoverPath}" Stretch="Uniform"/>
                             </Border>
 
 
@@ -99,6 +93,7 @@
                                 <ComboBoxItem Content="Заброшено"/>
 
                             </ComboBox>
+
                             <StackPanel.Resources>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="FontFamily" Value="{StaticResource MS}"/>
@@ -132,13 +127,9 @@
                                 </Style>
                             </StackPanel.Resources>
                         </StackPanel>
-
                     </Border>
-
                 </DataTemplate>
-
             </ListView.ItemTemplate>
-
         </ListView>
         
         <Grid.Resources>
@@ -182,7 +173,6 @@
                 <Setter Property="Margin" Value="5"/>
                 <Setter Property="Padding" Value="5"/>
             </Style>
-            
         </Grid.Resources>
     </Grid>
 </Page>
