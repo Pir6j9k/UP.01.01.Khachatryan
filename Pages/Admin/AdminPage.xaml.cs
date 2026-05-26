@@ -232,6 +232,12 @@ namespace УП._01._01.Khachatryan.Pages.Admin
             if (user == null)
                 return;
 
+            if (user.UserID == Core.CurrentUser.UserID)
+            {
+                MessageBox.Show("Нельзя заморозить самого себя");
+                return;
+            }
+
             user.IsFrozen = true;
 
             Core.DB.SaveChanges();
