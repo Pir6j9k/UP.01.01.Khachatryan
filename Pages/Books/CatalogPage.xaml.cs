@@ -102,6 +102,8 @@ namespace УП._01._01.Khachatryan.Pages.Books
                 return;
             }
 
+            if (Core.CheckFrozen()) return;
+
             Book selectedBook = (sender as Button).Tag as Book;
 
             if (selectedBook == null)

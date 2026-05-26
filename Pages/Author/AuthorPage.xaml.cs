@@ -35,11 +35,14 @@ namespace УП._01._01.Khachatryan.Pages.Author
 
         private void AddBookBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (Core.CheckFrozen()) return;
             Core.MainFrame.Navigate(new AddEditBookPage());
+
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (Core.CheckFrozen()) return;
             Book selectedBook = (sender as Button).DataContext as Book;
 
             if (selectedBook == null)
@@ -50,6 +53,8 @@ namespace УП._01._01.Khachatryan.Pages.Author
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (Core.CheckFrozen()) return;
+
             Book selectedBook = (sender as Button).DataContext as Book;
             if (selectedBook == null)
                 return;
@@ -94,6 +99,7 @@ namespace УП._01._01.Khachatryan.Pages.Author
 
         private void BooksGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (Core.CheckFrozen()) return;
             Book selectedBook = BooksGrid.SelectedItem as Book;
             if (selectedBook == null)
                 return;
